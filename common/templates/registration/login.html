@@ -1,0 +1,40 @@
+{% extends 'base.html' %} 
+{% block window %}
+{% load crispy_forms_tags %}
+{% load static %}
+<style>
+.login {
+    border: 1px solid grey;
+    box-shadow: 5px 10px 5px;
+    margin-left: 60%;
+    margin-top: 5rem;
+    width:300px;
+    z-index: 1000;
+}
+</style>
+
+<div class="jumbotron card card-image" style='background-image:url({% static "common/images/field.jpg" %});background-size:cover;min-height:700px;'>
+    {% comment %} <img src='' alt='truck'> {% endcomment %}
+    <h1 class="display-3">Farming</h1>
+    <hr class="my-2">
+    <div class="login card ">
+                <div class="card-header">
+                    <h4 class="card-title">Please sign in</h4>
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {% csrf_token %} 
+                        {{form.as_p}}
+                        <button class="btn btn-lg primary text-white btn-block" type="submit">Sign in</button>
+                        <p>No Account? <a href="/create-profile/">Sign Up!</a></p>
+                    </form>
+                </div>
+            </div>
+
+</div>
+
+<script>
+    $('input').addClass('form-control');
+</script>
+
+{% endblock %}

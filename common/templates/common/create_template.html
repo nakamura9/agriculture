@@ -1,0 +1,23 @@
+{% extends 'window.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-3">{{title}}</h1>
+    <p class="lead">{{description}}</p>
+    <hr class="my-2">
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card shadow">
+                <div class="card-body">
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

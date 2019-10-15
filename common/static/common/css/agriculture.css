@@ -1,0 +1,45 @@
+.shadow {
+    border: 1px solid grey;
+    padding: 40px ;
+    box-shadow: 5px 10px 5px 76b39d;
+    margin-bottom: 15px;
+}
+
+input:required, textarea:required, select:required {
+    background-color: #98d5bf;
+}
+
+.card h4, .card h5 {
+    font-weight: 250;
+}
+
+
+.primary {
+    background-color: #155e63;
+    color: #f9f8eb;
+
+}
+
+.secondary {
+    background-color: #76b39d;
+    color: #155e63;
+}
+
+.tertiary {
+    background-color: #f9f8eb;
+    color: #155e63;
+}
+
+.quarternary {
+    background-color: #98d5bf;
+}
+
+.jumbotron {
+    background-color: #76b39d;
+    color: #155e63;
+}
+
+footer.primary a {
+    text-decoration: none;
+    color: white;
+}

@@ -1,0 +1,75 @@
+{% extends 'window.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row" style='margin-top:2rem;'>
+        <div class="col-sm-3 secondary" style='min-height:50vh;'>
+            <a href="{% url 'projects:create-project' %}" class="btn btn-lg btn-block primary">
+                Create Project
+            </a>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a  data-toggle="pill" href="#summary" class="nav-link active">Project Summary</a>
+                </li>
+                <li class="nav-item">
+                    <a  data-toggle="pill" href="#list" class="nav-link">Project List</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-9 shadow">
+            <div class="tab-content panel-body">
+                <div class="tab-pane active" id="summary">
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Active Projects</h4>
+                            <p class="card-text">Text</p>
+                        </div>
+                    </div>
+                    <div class="card ">
+                        <div class="card-body">
+                            <h4 class="card-title">Scheduled Projects</h4>
+                            <p class="card-text">Text</p>
+                        </div>
+                    </div>
+                    <div class="card ">
+                        <div class="card-body">
+                            <h4 class="card-title">Upcoming Milestones</h4>
+                            <p class="card-text">Text</p>
+                        </div>
+                    </div>
+                    <div class="card ">
+                        <div class="card-body">
+                            <h4 class="card-title">Projected Revenue</h4>
+                            <p class="card-text">Text</p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-2">
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Recent Costs</h4>
+                            <p class="card-text">Text</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Agents</h4>
+                            <p class="card-text">Text</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="tab-pane" id="list">
+                    {% for project in projects %}
+                        {% include 'projects/project/card.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

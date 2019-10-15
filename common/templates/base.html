@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title%}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'common/js/jquery-ui-1.12.1.custom/jquery-ui.theme.css' %}">
+    <link rel="stylesheet" href="{% static 'common/js/jquery-ui-1.12.1.custom/jquery-ui.structure.css' %}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'common/css/bootstrap/css/bootstrap.min.css' %}" />
+   
+    
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'common/assets/css/all.min.css' %}" />
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'common/css/hover-min.css' %}" />
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'common/css/animate.css' %}" />
+    <link rel="stylesheet" type="text/css" 
+        href="{% static 'common/css/agriculture.css' %}" />
+    
+    
+
+    <script type="text/javascript" src="{% static 'common/js/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'common/js/popper.js' %}"></script>
+    
+    <script type="text/javascript" src="{% static 'common/js/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'common/css/bootstrap/js/bootstrap.min.js' %}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body class='tertiary' >
+    {% block window %}{% endblock %}
+    <script>
+        $(".dateinput").datepicker({
+            changeYear: true,
+            changeMonth: true,
+            dateFormat: 'yy-mm-dd',
+            yearRange: '1950:2030',
+            });
+    </script>
+</body>
+</html>

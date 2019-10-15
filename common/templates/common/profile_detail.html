@@ -1,0 +1,27 @@
+{% extends 'window.html' %}
+{% load static %}
+<style>
+.profile-card {
+    z-index: 100;
+    width: 100%;
+    margin-left: 30vw;
+    margin-right: 30vw;
+
+}
+</style>
+
+<div class="jumbotron card card-image" style="background-image:url({% static 'common/images/field-2.jpg' %})">
+
+    <div class="card profile-card shadow">
+        <div class="card-body">
+            <div style='width:100%;'>
+                <img width="250" height="250" src="{% static '{{object.photo.url}}' %}" class='rounded-circle' alt="">
+            </div>
+            <h4>{{object.user.username}}</h4>
+            <p class="card-text">Email: {{object.email}}</p>
+            <p class="card-text">Date of Birth: {{object.date_of_birth}}</p>
+            <h5 style='font-weight:250'>Bio</h5>
+            <p class="card-text">{{object.bio|linebreaks}}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+{% extends 'window.html' %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-3">{{object.name}}</h1>
+    <p class="lead">An agricultural project</p>
+    <hr class="my-2">
+    <div class="dropdown">
+        <button class="btn primary dropdown-toggle" type="button" id="project-actions" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                    Actions
+                </button>
+        <div class="dropdown-menu" aria-labelledby="project-actions">
+            <a class="dropdown-item" href="{% url 'projects:create-project' %}">Create New</a>
+            <h6 class="dropdown-header">Activities</h6>
+            <a class="dropdown-item" href="#">Add Activity</a>
+            <h6 class="dropdown-header">Agents</h6>
+            <a class="dropdown-item" href="#">Add Agent</a>
+            <a class="dropdown-item" href="#">Review Actions</a>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+    <div class="card-body">
+        <p class="card-text">Start: {{project.start_date}}</p>
+        <p class="card-text">Type: {{project.type_string}}</p>
+        <hr class="my-4">
+        <p class="card-text">Description: {{project.description}}</p>
+    </div>
+</div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
