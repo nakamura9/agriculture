@@ -1,0 +1,9 @@
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="card-title">{{stage.name}}  <span style='float:right' ><a class='btn primary' href="{% url 'projects:activity-details' pk=stage.pk %}"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i> </a></span></h5>
+        <p class="card-text"><strong>Responsible: </strong>{{stage.responsible}}</p>
+        <p class="card-text"><strong>Start Date: </strong>{{stage.start_date}}</p>
+        <hr class="my-2">
+        <p class="card-text">{{stage.description}}</p>
+    </div>
+</div>

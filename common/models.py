@@ -3,7 +3,8 @@ from django.shortcuts import reverse
 
 
 class Profile(models.Model):
-    user = models.ForeignKey('auth.user', on_delete=models.CASCADE)
+    user = models.OneToOneField('auth.user', on_delete=models.CASCADE,
+        null=True)
     created = models.DateField(auto_now=True)
     email = models.EmailField(blank=True, default="", max_length=254)
     photo = models.ImageField(upload_to='profiles')

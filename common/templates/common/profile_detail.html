@@ -1,27 +1,33 @@
 {% extends 'window.html' %}
 {% load static %}
+{% block content %}
+
 <style>
 .profile-card {
     z-index: 100;
-    width: 100%;
+    width: 30vw;
     margin-left: 30vw;
     margin-right: 30vw;
 
 }
 </style>
 
-<div class="jumbotron card card-image" style="background-image:url({% static 'common/images/field-2.jpg' %})">
+<div class="jumbotron card card-image" style="background-image:url({% static 'common/images/field-2.jpg' %});background-size:cover;">
 
     <div class="card profile-card shadow">
         <div class="card-body">
             <div style='width:100%;'>
-                <img width="250" height="250" src="{% static '{{object.photo.url}}' %}" class='rounded-circle' alt="">
+                <img width="250" height="250" src="{{object.photo.url}}" class='rounded-circle' alt="">
             </div>
             <h4>{{object.user.username}}</h4>
             <p class="card-text">Email: {{object.email}}</p>
             <p class="card-text">Date of Birth: {{object.date_of_birth}}</p>
             <h5 style='font-weight:250'>Bio</h5>
             <p class="card-text">{{object.bio|linebreaks}}</p>
+
+            <a style='display:inline-block;float:right;' href="/update-profile/{{object.pk}}" class="btn primary">Edit</a>
         </div>
     </div>
 </div>
+
+{% endblock content %}

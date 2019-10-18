@@ -1,0 +1,157 @@
+{% extends 'window.html' %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-3">{{object.name}}</h1>
+    <p class="lead">Stage {{object.stage_num}} for my project {{object.project}}</p>
+    <hr class="my-2">
+    <div class="dropdown">
+        <button class="btn primary dropdown-toggle" type="button" id="project-actions" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Actions
+        </button>
+        <div class="dropdown-menu" aria-labelledby="project-actions">
+            <a class="dropdown-item" href="{% url 'projects:create-activity' project=object.project.pk %}">Create
+                New</a>
+            <a class="dropdown-item" href="{% url 'projects:update-activity' pk=object.pk %}">Edit</a>
+            <h6 class="dropdown-header">Inputs</h6>
+            <a class="dropdown-item" href="{% url 'projects:create-input' activity=object.pk %}">Add Input</a>
+            <a class="dropdown-item" href="#inputs">Inputs List</a>
+            <a href="{% url 'projects:create-input-category' %}" class="dropdown-item" data-in-modal="true">Create Input
+                Category</a>
+            <a href="{% url 'projects:create-unit' %}" class="dropdown-item" data-in-modal="true">Create Unit</a>
+            <h6 class="dropdown-header">Actions and Milestones</h6>
+            <a class="dropdown-item" href="{% url 'projects:create-action' activity=object.pk %}">Add Action</a>
+            <a class="dropdown-item" href="{% url 'projects:create-milestone' activity=object.pk %}">Set Milestone</a>
+
+
+            <h6 class="dropdown-header">Agents</h6>
+            <a class="dropdown-item" href="">Add Agent</a>
+            <a class="dropdown-item" href="#">Add Agent Role</a>
+
+            <h6 class="dropdown-header">Expenses</h6>
+            <a class="dropdown-item" href="{% url 'projects:create-expense' activity=object.pk %}">Record Expense</a>
+            <a class="dropdown-item" href="#expenses">Expenses List</a>
+            <a data-in-modal="true" href="{% url 'projects:create-expense-category' %}" class="dropdown-item">Create
+                Expense Category</a>
+
+            <h6 class="dropdown-header">Produce</h6>
+            <a class="dropdown-item" href="{% url 'projects:create-expense' activity=object.pk %}">Extract Produce</a>
+            <a class="dropdown-item" href="#expenses">Create Produce Type</a>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 style='font-family:serif;'>Stage Details</h3>
+
+                    <p class="card-text">Start: {{object.start_date}}</p>
+                    <p class="card-text">Status: {{object.status}}</p>
+                    <p class="card-text">Agent Responsible: {{object.responsible}}</p>
+                    <p class="card-text">Total Milestones: {{object.status}}</p>
+                    <p class="card-text">Milestones reached: {{object.status}}</p>
+                    <p class="card-text">Milestones Failed: {{object.status}}</p>
+                    <p class="card-text">Total Actions: {{object.status}}</p>
+                    <p class="card-text">Number of Agents involved: {{object.status}}</p>
+                    <p class="card-text">Estimated Costs: {{object.status}}</p>
+
+                    <p class="card-text">Total Expenses: {{object.status}}</p>
+                    <p class="card-text">Input Costs: {{object.status}}</p>
+                    <hr class="my-4">
+                    <p class="card-text">Description: {{object.description}}</p>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-sm-6">
+            <h3 class="card-title" style='font-family:serif;'>Milestones</h3>
+            {% for milestone in object.milestone_set.all %}
+            {% include 'projects/milestone/card.html' %}
+            {% endfor %}
+            <h3 class="card-title" style='font-family:serif;'>Actions</h3>
+            {% for action in object.action_set.all %}
+            {% include 'projects/action/card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 id='inputs' style='font-family:serif;'>Inputs</h3>
+                    <p class="card-text">
+                        Inputs refer to direct factors of production that are put into a project stage. This section is
+                        used to predict the costs associated with completing a stage.
+                    </p>
+                    <table class="table">
+                        <thead>
+                            <tr class="primary text-white">
+                                <th>Unit</th>
+                                <th>Unit Cost</th>
+                                <th>Quantity</th>
+                                <th>Category</th>
+                                <th style='min-width:30%;'>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for input in object.input_set.all %}
+                            <tr>
+                                <td>{{input.unit}}</td>
+                                <td>{{input.unit_cost}}</td>
+                                <td>{{input.quantity}}</td>
+                                <td>{{input.category}}</td>
+                                <td>{{input.description | truncatechars:50}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 id='expenses' style='font-family:serif;'>Expenses</h3>
+                    <p class="card-text">Expenses are costs incurred in products and services that contribute towards
+                        the completion of the project's stage. This represents the actual expenses inccured in the
+                        course of the project</p>
+                    <table class="table">
+                        <thead>
+                            <tr class="primary text-white">
+                                <th>Date</th>
+                                <th>Vendor</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for exp in object.expense_set.all %}
+                            <tr>
+                                <td>{{exp.date}}</td>
+                                <td>{{exp.vendor}}</td>
+                                <td>{{exp.expense_category}}</td>
+                                <td>{{exp.description}}</td>
+                                <td>{{exp.amount}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

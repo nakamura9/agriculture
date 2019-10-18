@@ -1,8 +1,8 @@
 .shadow {
-    border: 1px solid grey;
-    padding: 40px ;
-    box-shadow: 5px 10px 5px 76b39d;
-    margin-bottom: 15px;
+    border: 1px solid #eee;
+    padding: 20px ;
+    box-shadow: 0px 19px 38px #ccc;
+    margin-bottom: 40px;
 }
 
 input:required, textarea:required, select:required {

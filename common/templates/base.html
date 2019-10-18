@@ -31,6 +31,8 @@
 </head>
 <body class='tertiary' >
     {% block window %}{% endblock %}
+    
+    {% include 'modal.html' %}
     <script>
         $(".dateinput").datepicker({
             changeYear: true,

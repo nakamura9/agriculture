@@ -1,0 +1,11 @@
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="card-title">{{action.description | truncatechars:50}}<span style='float:right' ><a class='btn primary' href="{% url 'projects:milestone-details' pk=action.pk %}"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i> </a></span></h5>
+        <p class="card-text"><strong>Date: </strong>{{action.date}}</p>
+        <p class="card-text"><strong>Actor: </strong>{{action.taken_by}}</p>
+        <p class="card-text"><strong>Estimated Cost: </strong>{{action.estimated_cost}}</p>
+
+        <hr class="my-2">
+        <p class="card-text">{{action.description}}</p>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="card-title">{{milestone.name}}  <span style='float:right' ><a class='btn primary' href="{% url 'projects:milestone-details' pk=milestone.pk %}"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i> </a></span></h5>
+        <p class="card-text"><strong>Date: </strong>{{milestone.date}}</p>
+        <p class="card-text"><strong>Status: </strong>{{milestone.status_string}}</p>
+        <hr class="my-2">
+        <p class="card-text">{{milestone.description}}</p>
+    </div>
+</div>

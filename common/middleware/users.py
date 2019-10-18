@@ -16,7 +16,9 @@ class UserTestMiddleware(object):
 
         redirect = request.META.get('HTTP_REFERER', None)
         if request.user.is_superuser or \
+                hasattr(request.user, 'profile') or \
                 request.path.startswith("/login") or \
+                "profile" in request.path or \
                 request.path.startswith("/admin") or \
                 request.path.startswith("/marketplace") or \
                 request.path.startswith("/blog"):

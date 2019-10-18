@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block window %}
+
+<div class="primary" style="padding:10px;">
+    <h4>{{title}}</h4>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        {% crispy form %}
+    </div>
+</div>
+
+{% endblock window %}

@@ -1,0 +1,121 @@
+<style>
+    .my-modal{
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        } 
+
+        .modal-header {
+             width: 100%;
+             height: 40px;
+             padding: 5px;
+        }
+
+        .modal-content{
+            background-color: #eee;
+            margin: 10px auto;
+            padding: 5px;
+            width: 80%;
+            height: 80%;
+        }   
+
+        .frame-style {
+            width: 100%;
+            height: 100%
+        }
+
+        .iframe-minimized {
+            display:none;
+            width: 200px;
+            height:40px;
+            padding: 5px;
+            position: fixed;
+            z-index: 10000;
+            bottom: 0px;
+            right: 0px;
+            transition: display 0.3s;
+        }
+
+        
+</style>
+
+<div class="my-modal" id="id-my-modal">
+    <div class="modal-content">
+        <div class="modal-header primary">
+            <button onclick="closeModal()"  class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
+            <button onclick="minimizeModal()"  class="btn btn-sm secondary"><i class="far fa-window-minimize"></i></button>
+        </div>
+        <iframe name='popup' class="frame-style" frameborder="0" id="popup-frame" src=""></iframe>
+    </div>
+</div>
+
+<div class="iframe-minimized">
+    <button onclick="closeModal()"  class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
+    <button class="btn secondary btn-sm" onclick='maximizeModal()'>
+        <i class="far fa-window-maximize"></i>
+    </button>
+</div>
+
+<script>
+
+$(document).ready(function(){
+    var el = $('a[data-in-modal="true"]');
+    el.attr("target", "popup");
+    el.on('click', function(){
+        $('#id-my-modal').show();
+    })
+})
+
+var iframeURL = '';
+var curURL = '';
+    $("#popup-frame").on('load', function(){
+        iframeURL = $('#popup-frame').attr('src');
+        curURL = document.getElementById('popup-frame').contentWindow.location.href;
+        curURL = '/' + curURL.replace(/^(?:\/\/|[^\/]+)*\//, "");
+
+        if(iframeURL != '' && curURL != iframeURL){
+            $("#id-my-modal").hide();
+            $('#popup-frame').empty();
+            iframeURL = '';
+            curURL = '';
+        }
+    });
+
+
+
+     function inIframe () {
+        try {
+            return window.self !== window.top;
+        } catch (e) {
+            return true;
+        }
+    }
+
+
+    function closeModal(){
+        if(confirm('Are you sure you want to close this page?')){
+            $("#id-my-modal").hide();
+            $('#popup-frame').empty();
+            $('.iframe-minimized').hide();
+
+
+        }
+    }
+
+    function minimizeModal(){
+        $("#id-my-modal").hide();
+        $('.iframe-minimized').show();
+    }
+
+    function maximizeModal(){
+        $("#id-my-modal").show();
+        $('.iframe-minimized').hide();
+    }
+
+</script>
